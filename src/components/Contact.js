@@ -1,7 +1,7 @@
 import React,{Fragment,useRef} from 'react';
 
 import emailjs from '@emailjs/browser';
-import cogoToast from 'cogo-toast';
+import toast from 'react-hot-toast';
 
 const Contact = () => 
 {
@@ -12,13 +12,13 @@ const Contact = () =>
     
         emailjs.sendForm('service_bzg94yl', 'template_gvdjoyd', form.current, 'ALQRA-3VIxuaLtuKR')
           .then((result) => {
-              cogoToast.success("email sent!")
+              toast.success("Email sent!")
               document.querySelector('.from_name').value="";
               document.querySelector('.email_id').value="";
               document.querySelector('.message').value="";
           }, (error) => {
               console.log(error.text);
-              cogoToast.error("Sorry! please try once again!!")
+              toast.error("Sorry! please try once again!!")
           });
       };
 

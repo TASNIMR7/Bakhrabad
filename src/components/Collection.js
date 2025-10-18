@@ -1,7 +1,6 @@
-import React,{Fragment} from 'react';
-
-import 'lightbox.js-react/dist/index.css'
-import {SlideshowLightbox, initLightboxJS} from 'lightbox.js-react'
+import React, { Fragment, useState } from 'react';
+import Lightbox from 'yet-another-react-lightbox';
+import 'yet-another-react-lightbox/styles.css';
 
 import collection1 from '../asset/image/collection1.jpeg'
 import collection2 from '../asset/image/collection2.jpeg'
@@ -34,50 +33,73 @@ import collection28 from '../asset/image/collection28.jpeg'
 import collection29 from '../asset/image/collection29.jpeg'
 import collection30 from '../asset/image/collection30.jpeg'
 
-
 const Collection = () => {
+    const [open, setOpen] = useState(false);
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const slides = [
+        { src: collection1 },
+        { src: collection2 },
+        { src: collection3 },
+        { src: collection4 },
+        { src: collection5 },
+        { src: collection6 },
+        { src: collection7 },
+        { src: collection8 },
+        { src: collection9 },
+        { src: collection10 },
+        { src: collection11 },
+        { src: collection12 },
+        { src: collection13 },
+        { src: collection14 },
+        { src: collection15 },
+        { src: collection16 },
+        { src: collection17 },
+        { src: collection18 },
+        { src: collection19 },
+        { src: collection20 },
+        { src: collection21 },
+        { src: collection22 },
+        { src: collection23 },
+        { src: collection24 },
+        { src: collection25 },
+        { src: collection26 },
+        { src: collection27 },
+        { src: collection28 },
+        { src: collection29 },
+        { src: collection30 },
+    ];
+
+    const handleImageClick = (index) => {
+        setCurrentIndex(index);
+        setOpen(true);
+    };
+
     return (
         <Fragment>
             <section className='gallery-section'>
                 <div className='row'>
                     <h2>Collections</h2>
 
-                    
-                    <SlideshowLightbox  className='gallery-grid'>
-                    
-                        <img className='gallery-img' src={collection1} />
-                        <img className='gallery-img' src={collection2} />  
-                        <img className='gallery-img' src={collection3} />
-                        <img className='gallery-img' src={collection4} />
-                        <img className='gallery-img' src={collection5} />
-                        <img className='gallery-img' src={collection6} />
-                        <img className='gallery-img' src={collection7} />
-                        <img className='gallery-img' src={collection8} />
-                        <img className='gallery-img' src={collection9} />
-                        <img className='gallery-img' src={collection10} />
-                        <img className='gallery-img' src={collection11} />
-                        <img className='gallery-img' src={collection12} />
-                        <img className='gallery-img' src={collection13} />
-                        <img className='gallery-img' src={collection14} />
-                        <img className='gallery-img' src={collection15} />
-                        <img className='gallery-img' src={collection16} />
-                        <img className='gallery-img' src={collection17} />
-                        <img className='gallery-img' src={collection18} />
-                        <img className='gallery-img' src={collection19} />
-                        <img className='gallery-img' src={collection20} />
-                        <img className='gallery-img' src={collection21} />
-                        <img className='gallery-img' src={collection22} />
-                        <img className='gallery-img' src={collection23} />
-                        <img className='gallery-img' src={collection24} />
-                        <img className='gallery-img' src={collection25} />
-                        <img className='gallery-img' src={collection26} />
-                        <img className='gallery-img' src={collection27} />
-                        <img className='gallery-img' src={collection28} />
-                        <img className='gallery-img' src={collection29} />
-                        <img className='gallery-img' src={collection30} />
-                    
-                    </SlideshowLightbox>
-                    
+                    <div className='gallery-grid'>
+                        {slides.map((slide, index) => (
+                            <img
+                                key={index}
+                                className='gallery-img'
+                                src={slide.src}
+                                onClick={() => handleImageClick(index)}
+                                alt={`collection-${index + 1}`}
+                                style={{ cursor: 'pointer' }}
+                            />
+                        ))}
+                    </div>
+
+                    <Lightbox
+                        open={open}
+                        close={() => setOpen(false)}
+                        slides={slides}
+                        index={currentIndex}
+                    />
                 </div>
             </section>
         </Fragment>

@@ -1,5 +1,5 @@
-
 import './asset/css/custom.css'
+import { Toaster } from 'react-hot-toast';
 
 import Hero from './components/Hero';
 
@@ -17,7 +17,8 @@ import MyRouter from './router/MyRouter';
 function App() {
   return (
     <div className="App">
-       <MyRouter/>
+      <Toaster position="top-center" />
+      <MyRouter/>
     </div>
   );
 }
